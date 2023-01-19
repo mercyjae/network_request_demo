@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/home_screen.dart';
@@ -6,7 +6,7 @@ import 'package:untitled1/login/login_provider.dart';
 import 'package:untitled1/login/login_state.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
         final state = loginProvider.currentState;
         if (state is LoginStateLoaded) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              context, MaterialPageRoute(builder: (context) => const HomeScreen()));
         }
       });
     super.initState();
@@ -72,16 +72,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                   _passwordController.text.trim());
                             },
                             child: state is LoginStateLoading
-                                ? CircularProgressIndicator(
+                                ? const CircularProgressIndicator(
                                     valueColor:
                                         AlwaysStoppedAnimation(Colors.white),
                                   )
-                                : Text('Login'));
+                                : const Text('Login'));
                       })
                 ],
               ),
             ),
           ),
         ));
+  }
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
