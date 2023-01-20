@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/login_screen.dart';
+import 'package:untitled1/network_service.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class SignupScreen extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    createAccount(
+                  NetWorkService.createAccount(
                        userName: usernameController.text.trim(),
                          password: passwordController.text.trim());
                   
@@ -59,22 +60,22 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Future<void> createAccount(
-      {required String userName, required String password}) async {
-    try {
-      final dio = Dio();
-      final response =
-          await dio.post('https://bookstore.demoqa.com/Account/v1/User', data: {
-        "userName": userName,
-        "password": password,
-      });
+  // Future<void> createAccount(
+  //     {required String userName, required String password}) async {
+  //   try {
+  //     final dio = Dio();
+  //     final response =
+  //         await dio.post('https://bookstore.demoqa.com/Account/v1/User', data: {
+  //       "userName": userName,
+  //       "password": password,
+  //     });
       
-      print(response.toString());
-    } catch (e, s) {
-      print('$e $s');
-    }
+  //     print(response.toString());
+  //   } catch (e, s) {
+  //     print('$e $s');
+  //   }
    
-  }
+  // }
 
   
 }

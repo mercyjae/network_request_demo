@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:untitled1/signup_screen.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  Directory appDoc = await getApplicationDocumentsDirectory();
+  Hive.init(appDoc.path);
   runApp(const MyApp());
 }
 
