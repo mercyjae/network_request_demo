@@ -1,9 +1,18 @@
 import 'package:hive_flutter/hive_flutter.dart';
-
+import 'package:path_provider/path_provider.dart' as path_provider;
+Future<void> initHive() async {
+  // Directory appDoc = await getApplicationDocumentsDirectory();
+  // Hive.init(appDoc.path);
+  final appDocumentDirectory =
+      await path_provider.getApplicationDocumentsDirectory();
+await HiveService.openBox('username');
+  Hive.init(appDocumentDirectory.path);
+}
 class HiveService {
   HiveService();
 
   static Future<Box<dynamic>> openBox(String value) async {
+  
     return Hive.openBox(value);
   }
 
