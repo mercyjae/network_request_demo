@@ -4,24 +4,24 @@ Future<void> initHive() async {
   // Directory appDoc = await getApplicationDocumentsDirectory();
   // Hive.init(appDoc.path);
   final appDocumentDirectory =
-      await path_provider.getApplicationDocumentsDirectory();
-await HiveService.openBox('username');
+  await path_provider.getApplicationDocumentsDirectory();
+
   Hive.init(appDocumentDirectory.path);
+  await HiveService.openBox('username');
 }
 class HiveService {
-  HiveService();
+
 
   static Future<Box<dynamic>> openBox(String value) async {
-  
     return Hive.openBox(value);
   }
 
   static Future<void> registerAdapter<T>(
-    TypeAdapter<T> adapter, {
-    bool internal = false,
-    bool override = false,
-  }) async {
-    return Hive.registerAdapter(adapter,
+      TypeAdapter<T> adapter, {
+        bool internal = false,
+        bool override = false,
+      }) async {
+    return  Hive.registerAdapter(adapter,
         internal: internal, override: override);
   }
 

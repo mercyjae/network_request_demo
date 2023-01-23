@@ -19,11 +19,11 @@ class HiveServices {
 
   Future<Map<String, dynamic>>
 
-      /// Getting data from the box.
-      getData(
-    String boxName,
-    List<String> keys,
-  ) async {
+  /// Getting data from the box.
+  getData(
+      String boxName,
+      List<String> keys,
+      ) async {
     await Hive.openBox('user');
     final box = Hive.box(boxName);
     Map<String, dynamic> map = {};
