@@ -8,6 +8,8 @@ Future<void> initHive() async {
 
   Hive.init(appDocumentDirectory.path);
   await HiveService.openBox('username');
+  await HiveService.openBox('email');
+  await HiveService.openBox('dob');
 }
 class HiveService {
 
@@ -29,8 +31,8 @@ class HiveService {
     return Hive.box(boxName).put(key, value);
   }
 
-  Future getData(String boxName, {required String key, dynamic defaultValue}) {
-    return Hive.box(boxName).get(key, defaultValue: defaultValue);
+  Future getData(String boxName, {required String key, dynamic defaultValue}) async{
+    return await Hive.box(boxName).get(key, defaultValue: defaultValue);
   }
 
   Future deleteData(String boxName, {required String key}) {
